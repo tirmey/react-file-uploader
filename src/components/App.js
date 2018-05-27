@@ -21,7 +21,10 @@ class App extends Component {
     return (
       <div className="app">  
         <FileUploader 
+          fileMaxSize={1 * 1024 * 1024}
+          uploadMaxSize={2 * 1024 * 1024}
           multipleFiles={true} 
+          uploadSizeBar={true}
         />
       </div>
     );

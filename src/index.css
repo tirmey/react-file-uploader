@@ -115,16 +115,22 @@ div::-webkit-scrollbar-thumb {
   height: 100vh;
   transition: opacity .5s; }
 
-.file-upload-wrapper {
+#form {
+  width: 95%;
   max-width: 700px;
   margin: 0 auto; }
 
-.file-upload {
+.file-uploader {
   max-height: 600px;
   transition: transform .3s, opacity .3s, max-height .25s; }
-  .file-upload input[type="file"] {
+  .file-uploader p {
+    display: inline-block;
+    font-weight: bold; }
+  .file-uploader input[type="file"] {
     display: none; }
-  .file-upload > div {
+  .file-uploader__attach {
+    border-radius: 3px; }
+  .file-uploader > div {
     display: flex;
     position: relative;
     align-items: center;
@@ -132,15 +138,15 @@ div::-webkit-scrollbar-thumb {
     margin-bottom: 5px;
     justify-content: flex-end;
     border: 1px solid #000; }
-  .file-upload.file-upload-arquivos {
+  .file-uploader__div {
     background-color: #f3f3f3;
     border-radius: 7px;
     box-shadow: 0 0 17px -2px rgba(0, 0, 0, 0.459);
-    padding: 30px 20px 50px;
-    margin-bottom: 40px;
+    padding: 30px 20px;
+    margin: 30px 0;
     position: relative; }
-  .file-upload label.label-upload {
-    background-color: #494;
+  .file-uploader__label-upload {
+    background-color: #116466;
     color: #fff;
     width: 20%;
     margin: 0;
@@ -151,29 +157,115 @@ div::-webkit-scrollbar-thumb {
     text-transform: uppercase;
     text-align: center;
     font-size: 1em;
-    cursor: pointer; }
-  .file-upload input {
-    border: 0 solid #555; }
-  .file-upload .span-anexar {
+    cursor: pointer;
+    border-radius: 0 2px 2px 0; }
+    .file-uploader__label-upload i {
+      pointer-events: none; }
+  .file-uploader label.remove-file {
+    background-color: #be1717; }
+  .file-uploader__span-attach {
     border: 0;
     margin: 0;
     display: none; }
-  .file-upload .texto {
+  .file-uploader__text {
     font-size: 0.7em;
     position: absolute;
     left: 5px;
     width: 78%; }
-  .file-upload .fa-upload, .file-upload .fa-times {
+  .file-uploader .fa-upload,
+  .file-uploader .remove-file i {
     color: #fff;
     padding-bottom: 0;
     font-size: 1.3em;
     margin: 0;
     pointer-events: none;
     padding-top: 0; }
-  .file-upload .remover-arquivo {
-    background-color: #e45 !important; }
-    .file-upload .remover-arquivo i {
+  .file-uploader__add-btn {
+    display: inline-block;
+    padding: 10px;
+    width: unset;
+    margin: 10px 0;
+    background-color: #eee;
+    font-size: 0.9em;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold; }
+    .file-uploader__add-btn .fa-plus-circle {
+      color: #116466;
       pointer-events: none; }
+    .file-uploader__add-btn span {
+      color: #555;
+      margin-left: 5px;
+      pointer-events: none; }
+  .file-uploader__hint {
+    font-size: 0.7em;
+    font-weight: bold;
+    position: absolute;
+    background-color: #eee;
+    max-width: 400px;
+    box-shadow: 1px 1px 15px 0 rgba(0, 0, 0, 0.33);
+    padding: 10px;
+    left: 0;
+    top: 40px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s;
+    z-index: 10;
+    border-radius: 4px; }
+    .file-uploader__hint:hover {
+      opacity: 1;
+      pointer-events: all; }
+    .file-uploader__hint span {
+      display: block; }
+  .file-uploader .fa-info-circle {
+    color: #333;
+    margin-left: 5px;
+    font-size: 1rem; }
+    .file-uploader .fa-info-circle:hover + .file-uploader__hint {
+      opacity: 1;
+      pointer-events: all; }
+  .file-uploader__close-window {
+    position: absolute;
+    right: 6px;
+    top: 5px;
+    font-weight: bold;
+    font-size: 1.3rem;
+    cursor: pointer; }
+    .file-uploader__close-window:hover i {
+      color: #999; }
+    .file-uploader__close-window i {
+      color: #555;
+      pointer-events: none;
+      transition: color .25s; }
+
+.file-uploader-bar {
+  width: 65%;
+  max-width: 400px;
+  border: 3px solid #444;
+  height: 30px;
+  position: relative;
+  border-radius: 3px;
+  margin: 0 10px; }
+  .file-uploader-bar__div {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center; }
+    .file-uploader-bar__div h3,
+    .file-uploader-bar__div .barra-legenda {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 20px; }
+  .file-uploader-bar__fill {
+    height: 100%;
+    background-color: #116466;
+    width: 0;
+    transition: width .6s; }
+  .file-uploader-bar__text {
+    margin: 0 10px;
+    text-align: center;
+    width: 100%; }
 
 .generic-messages__overlay {
   position: absolute;

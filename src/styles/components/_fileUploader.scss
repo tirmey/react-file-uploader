@@ -1,74 +1,180 @@
-.file-upload-wrapper {
-    max-width: 700px;
-    margin: 0 auto;
+#form {
+	width: 95%;
+	max-width: 700px;
+	margin: 0 auto;
 }
 
-.file-upload {
-    max-height: 600px;   
-    transition: transform .3s, opacity .3s, max-height .25s;            
-    
-    input[type="file"] {
-        display: none;
-    }
+.file-uploader {
+	max-height: 600px;
+	transition: transform .3s, opacity .3s, max-height .25s;
+	p {
+		display: inline-block;
+		font-weight: bold;
+	}
+	input[type="file"] {
+		display: none;
+	}
+	&__attach {
+		border-radius: 3px;
+	}
+	&>div {
+		display: flex;
+		position: relative;
+		align-items: center;
+		flex-flow: row wrap;
+		margin-bottom: 5px;
+		justify-content: flex-end;
+		border: 1px solid #000;
+	}
+	&__div {
+		background-color: #f3f3f3;
+		border-radius: 7px;
+		box-shadow: 0 0 17px -2px rgba(0, 0, 0, 0.459);
+		padding: 30px 20px;
+		margin: 30px 0;
+		position: relative;
+	}
+	&__label-upload {
+		background-color: $green;
+		color: #fff;
+		width: 20%;
+		margin: 0;
+		padding: 5px 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-transform: uppercase;
+		text-align: center;
+		font-size: 1em;
+		cursor: pointer;
+		border-radius: 0 2px 2px 0;
+		i {
+			pointer-events: none;
+		}
+	}
+	label.remove-file {
+		background-color: $red;
+	}
+	&__span-attach {
+		border: 0;
+		margin: 0;
+		display: none;
+	}
+	&__text {
+		font-size: 0.7em;
+		position: absolute;
+		left: 5px;
+		width: 78%;
+	}
+	.fa-upload,
+	.remove-file i {
+		color: #fff;
+		padding-bottom: 0;
+		font-size: 1.3em;
+		margin: 0;
+		pointer-events: none;
+		padding-top: 0;
+	}
+	&__add-btn {
+		display: inline-block;
+		padding: 10px;
+		width: unset;
+		margin: 10px 0;
+		background-color: #eee;
+		font-size: 0.9em;
+		border-radius: 5px;
+		cursor: pointer;
+		font-weight: bold;
+		.fa-plus-circle {
+			color: $green;
+			pointer-events: none;
+		}
+		span {
+			color: #555;
+			margin-left: 5px;
+			pointer-events: none;
+		}
+	}
+	&__hint {
+		font-size: 0.7em;
+		font-weight: bold;
+		position: absolute;
+		background-color: #eee;
+		max-width: 400px;
+		box-shadow: 1px 1px 15px 0 rgba(0, 0, 0, 0.33);
+		padding: 10px;
+		left: 0;
+		top: 40px;
+		opacity: 0;
+		pointer-events: none;
+		transition: all 0.5s;
+		z-index: 10;
+		border-radius: 4px;
+		&:hover {
+			opacity: 1;
+			pointer-events: all;
+		}
+		span {
+			display: block;
+		}
+	}
+	.fa-info-circle {
+		color: #333;
+		margin-left: 5px;
+		font-size: 1rem;
+		&:hover+.file-uploader__hint {
+			opacity: 1;
+			pointer-events: all;
+		}
+	}
+	&__close-window {
+		position: absolute;
+		right: 6px;
+		top: 5px; //font-family: $fonteTitulo;
+		font-weight: bold;
+		font-size: 1.3rem;
+		cursor: pointer;
+		&:hover i {
+			color: #999;
+		}
+		i {
+			color: #555;
+			pointer-events: none;
+			transition: color .25s;
+		}
+	}
+}
 
-    & > div {
-        display: flex;
-        position: relative;
-        align-items: center;
-        flex-flow: row wrap;
-        margin-bottom: 5px;
-        justify-content: flex-end;
-        border: 1px solid #000;
-    }   
-    
-    &.file-upload-arquivos {
-        background-color: #f3f3f3;
-        border-radius: 7px;
-        box-shadow: 0 0 17px -2px rgba(0, 0, 0, 0.459);
-        padding: 30px 20px 50px;
-        margin-bottom: 40px;        
-        position: relative;
-    }
-    label.label-upload {
-        background-color: #494;
-        color: #fff;
-        width: 20%;
-        margin: 0;
-        padding: 5px 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-transform: uppercase;        
-        text-align: center;
-        font-size: 1em;
-        cursor: pointer;
-    }
-    input {
-        border: 0 solid #555;
-    }
-    .span-anexar {
-        border: 0;
-        margin: 0;
-        display: none;
-    }
-    .texto {
-        font-size: 0.7em;
-        position: absolute;
-        left: 5px;
-        width: 78%;
-    }
-    .fa-upload, .fa-times {
-        color: #fff;
-        padding-bottom: 0;
-        font-size: 1.3em;
-        margin: 0;
-        pointer-events: none;
-        padding-top: 0;
-    }
-    .remover-arquivo {
-        background-color:#e45 !important;
-        i {
-            pointer-events: none;
-        }
-    } 
+.file-uploader-bar {
+	width: 65%;
+	max-width: 400px;
+	border: 3px solid #444;
+	height: 30px;
+	position: relative;
+	border-radius: 3px;
+	margin: 0 10px;
+	&__div {
+		width: 100%;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: center;
+		align-items: center;
+		h3,
+		.barra-legenda {
+				width: 100%;
+				text-align: center;
+				margin-bottom: 20px;
+		}
+	}
+	&__fill {
+		height: 100%;
+		background-color: $green;
+		width: 0;
+		transition: width .6s;
+	}
+	&__text {
+		margin: 0 10px;
+		text-align: center;
+		width: 100%;
+	}
 }
