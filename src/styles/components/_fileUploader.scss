@@ -1,0 +1,74 @@
+.file-upload-wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.file-upload {
+    max-height: 600px;   
+    transition: transform .3s, opacity .3s, max-height .25s;            
+    
+    input[type="file"] {
+        display: none;
+    }
+
+    & > div {
+        display: flex;
+        position: relative;
+        align-items: center;
+        flex-flow: row wrap;
+        margin-bottom: 5px;
+        justify-content: flex-end;
+        border: 1px solid #000;
+    }   
+    
+    &.file-upload-arquivos {
+        background-color: #f3f3f3;
+        border-radius: 7px;
+        box-shadow: 0 0 17px -2px rgba(0, 0, 0, 0.459);
+        padding: 30px 20px 50px;
+        margin-bottom: 40px;        
+        position: relative;
+    }
+    label.label-upload {
+        background-color: #494;
+        color: #fff;
+        width: 20%;
+        margin: 0;
+        padding: 5px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;        
+        text-align: center;
+        font-size: 1em;
+        cursor: pointer;
+    }
+    input {
+        border: 0 solid #555;
+    }
+    .span-anexar {
+        border: 0;
+        margin: 0;
+        display: none;
+    }
+    .texto {
+        font-size: 0.7em;
+        position: absolute;
+        left: 5px;
+        width: 78%;
+    }
+    .fa-upload, .fa-times {
+        color: #fff;
+        padding-bottom: 0;
+        font-size: 1.3em;
+        margin: 0;
+        pointer-events: none;
+        padding-top: 0;
+    }
+    .remover-arquivo {
+        background-color:#e45 !important;
+        i {
+            pointer-events: none;
+        }
+    } 
+}

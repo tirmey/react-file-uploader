@@ -1,0 +1,10 @@
+//base
+@import './styles/base/reset';
+@import './styles/base/variables';
+@import './styles/base/base';
+@import './styles/base/classes';
+
+//components
+@import './styles/components/app';
+@import './styles/components/fileUploader';
+@import './styles/components/genericMessages';

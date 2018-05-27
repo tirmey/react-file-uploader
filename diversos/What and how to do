@@ -1,0 +1,100 @@
+A memory game with preset and custom themes;
+
+////////////////////////////////
+the logic behind it:  //////////
+////////////////////////////////
+The app will be baked in react, using the advantages of state management and the modular components.
+
+For the logic I´ll need and array of images and an array of cards.
+
+The array with images contains the absolute paths for internet files:
+['http://address-1', 'http://address-2', 'http://address-3', ... and so on]
+
+The array of cards are the number of images doubled, of course.  Each element is an objetc with the following schema:
+
+const card = {
+  id: Number,
+  imgSrc: String,
+  hasImage: Boolean
+}
+
+First of all, we had to select images. In the template themes, an array of image sources are previously set. But to implement the custom template, the user should insert the custom URL in a form, in the first place. After define the image sources array, we should create the cards array and, then, map each pair of image to two cards.
+
+So, to create the cards array we should read the number of images and, then, create a new array by this algorithm
+let cardArray = [];
+  for (let i = 0; i < imgArr.length * 2; i++) {
+    cardArray.push({id:i, hasImg: false})
+  }
+  setState.cardArray = cardArray;
+
+
+With the two arrays we should choose, randomly, for each image, two cards. We´ll acomplish it using the for loop and a filter helper:
+
+for (let i = 0; i < imgArr.length; i++) {
+  //number of cards without associated image: 
+  numAvailableCards = cardArr.filter((card) => card.hasImg === false).length
+  //random selected card
+  randomID = cardArr.filter((card) => card.hasImg === false)[Math.floor(Math.random() * numAvailableCards - 1)].id;
+
+  //associate the image to the card
+  cardArr.filter((card) => card.hasImg === false)[randomID].imgSrc = imgArr[i];
+  cardArr.filter((card) => card.hasImg === false)[randomID].hasImg = true;
+}
+
+  //after that, this card will be casted out of our filter array. But we need to associate another card with this image source. So, we have to repeat the process above!
+
+this code will do the job:
+********************************************************************
+********************************************************************
+
+const imgArr = ['http://www.galinhapintadinha.com.br/mini/pt/mini/images/galinha-pintadinha-mini/galinha-pintadinha-mini-001.jpg', 'http://www.galinhapintadinha.com.br/mini/pt/mini/images/galinha-pintadinha-mini/galinha-pintadinha-mini-002.jpg', 'http://www.galinhapintadinha.com.br/mini/pt/mini/images/galinha-pintadinha-mini/galinha-pintadinha-mini-003.jpg', 'http://www.galinhapintadinha.com.br/mini/pt/mini/images/galinha-pintadinha-mini/galinha-pintadinha-mini-004.jpg', 'http://www.galinhapintadinha.com.br/mini/pt/mini/images/galinha-pintadinha-mini/galinha-pintadinha-mini-006.jpg', 'http://www.galinhapintadinha.com.br/mini/pt/mini/images/galinha-pintadinha-mini/galinha-pintadinha-mini-007.jpg', 'http://www.galinhapintadinha.com.br/mini/pt/mini/images/galinha-pintadinha-mini/galinha-pintadinha-mini-008.jpg', 'http://www.galinhapintadinha.com.br/mini/pt/mini/images/galinha-pintadinha-mini/galinha-pintadinha-mini-009.jpg'];
+
+let cardArr = [];
+for (let i = 0; i < imgArr.length * 2; i++) {
+  cardArr.push({id:i, hasImg: false})
+}
+
+const generateCards = (imgArray, cardArray) => {
+  for (let i = 0; i < imgArray.length; i++) {
+    //number of cards without associated image: 
+    let numAvailableCards = cardArray.filter((card) => card.hasImg === false).length;
+    //random selected card
+    let randomID = cardArray.filter((card) => card.hasImg === false)[Math.floor(Math.random() * numAvailableCards)].id;
+
+    //associate the image to the card
+    cardArray[randomID].imgSrc = imgArray[i];
+    cardArray[randomID].hasImg = true;
+  }
+};
+
+generateCards(imgArr, cardArr);
+generateCards(imgArr, cardArr);
+
+********************************************************************
+********************************************************************
+
+Next, we should update the state of the app with the brand new cards:
+
+this.setState => (() => ({cards: cardArr}))
+
+Now, React should render the cards in the DOM. Something like that:
+
+cardArr.map(card => <div id={`card-${card.id}`} style={background: url('{card.imgSrc}') no-repeat center center;} className: card></div>);
+
+
+
+State:
+
+This properties are important in the game context:
+- theme - based on the theme, the images will be loaded automatically, or a for will be displayed to enter the image path sources
+- cards - array with all cards
+- imgSrc1 - src of the first card flipped on a given turn
+- imgsrc2 - src of the second card flipped on a given turn
+
+
+basic mechanics
+the player flips any card in the board. The program will test if there´s a previous card flipped. If so, the state property imgsrc1 has the src value. If not, the source associated with the card div will be stored in the imgSrc 1 property of the state. In both cases, a class "flipped" is added to this div, that causes a 3d rotation, showing the pic
+
+so, the player flips another div. The class "flipped" should be added to this second div and the program should check again (a recursive function) if it is the first or the second card. If it is the second, the recursive function should compare their sources. If they match, a class should be added (maybe the word "match") to both of them. That class should be associated with a style with the pointer-events:none property.
+
+if they don't match, the program should remove the class "flipped" of both cards.

@@ -1,0 +1,17 @@
+.hidden {
+  display: none;
+}
+
+.transparent {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.grayed-out {
+  opacity: .35;
+  pointer-events: none;
+}
+
+.tiny {
+  transform: scale(.4);
+}
